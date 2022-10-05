@@ -1,5 +1,6 @@
 #!/bin/bash
 
+sudo apt install -y apt-transport-https ca-certificates
 printf "Add key to apt of repository: "
 if wget -qO - https://www.mongodb.org/static/pgp/server-4.2.asc | sudo apt-key add - | grep -q '^OK'; then
     printf "success\n"
