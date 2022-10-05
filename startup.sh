@@ -1,6 +1,5 @@
 #!/bin/bash
 
-sudo apt install -y apt-transport-https ca-certificates
 printf "Add key to apt of repository: "
 if wget -qO - https://www.mongodb.org/static/pgp/server-4.2.asc | sudo apt-key add - | grep -q '^OK'; then
     printf "success\n"
@@ -25,6 +24,13 @@ else
 fi
 printf "Do upgrade installed packetges: "
 if ! { sudo apt upgrade -y 2>&1 || echo E: upgrade failed; } | grep -q '^[WE]:'; then
+    printf "success\n"
+else
+    printf "failure\n"
+    exit 1;
+fi
+printf "Installing the required packages to pass the test: "
+if ! { sudo apt install -y apt-transport-https ca-certificates 2>&1 || echo E: upgrade failed; } | grep -q '^[WE]:'; then
     printf "success\n"
 else
     printf "failure\n"

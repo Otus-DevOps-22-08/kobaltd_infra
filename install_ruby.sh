@@ -14,6 +14,13 @@ else
     printf "failure\n"
     exit 1;
 fi
+printf "Installing the required packages to pass the test: "
+if ! { sudo apt install -y apt-transport-https ca-certificates 2>&1 || echo E: upgrade failed; } | grep -q '^[WE]:'; then
+    printf "success\n"
+else
+    printf "failure\n"
+    exit 1;
+fi
 printf "Install Ruby: "
 if ! { sudo apt install -y ruby-full ruby-bundler build-essential 2>&1 || echo E: upgrade failed; } | grep -q '^[WE]:'; then
     printf "success\n"
