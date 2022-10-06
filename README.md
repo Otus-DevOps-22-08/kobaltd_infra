@@ -24,3 +24,11 @@ Host someinternalhost
 3)
 bastion_IP = 51.250.2.240
 someinternalhost_IP = 10.128.0.35
+
+4)
+testapp_IP = 62.84.116.155
+testapp_port = 9292
+
+5)
+Startup script
+create_vm.sh
